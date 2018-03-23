@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char>exp;
+        for(auto c:s){
+            if(c=='('||c=='['||c=='{')
+                exp.push(c);
+            else if(c==')'){
+                if(!exp.empty()&&exp.top()=='(')
+                    exp.pop();
+                else return false;
+            }
+            else if(c==']'){
+                if(!exp.empty()&&exp.top()=='[')
+                    exp.pop();
+                else return false;
+            }
+            else{
+                if(!exp.empty()&&exp.top()=='{')
+                    exp.pop();
+                else return false;
+            }
+        }
+        return exp.empty();
+    }
+};
+
+Comments:
+1. Using a map data structure can further shorten the code.
