@@ -1,0 +1,29 @@
+int calPoints(vector<string>& ops) {
+        int score = 0;
+        vector<int>valid;
+        int len = valid.size();
+        for(auto s:ops){
+            if(s=="C"){ 
+                score -= valid[len-1];
+                valid.pop_back();
+                len--;
+            }
+            else if(s=="D") {
+                score += 2*valid[len-1];
+                valid.push_back(2*valid[len-1]);
+                len++;
+            }
+            else if(s=="+"){
+                score += (valid[len-1]+valid[len-2]);
+                valid.push_back(valid[len-1]+valid[len-2]);
+                len++;
+            }
+            else {
+                int i = stoi(s);
+                valid.push_back(i);
+                len++;
+                score += i;
+            }
+        }
+        return score;
+    }
