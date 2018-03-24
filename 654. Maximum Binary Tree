@@ -1,0 +1,27 @@
+ //Straight forward Preorder construction
+ int findMax(vector<int>&nums){
+        int max = 0;
+        int index = 0;
+        for(int i=0;i<nums.size();++i){
+            if(nums[i]>max){
+                max = nums[i];
+                index = i;
+            }
+        }
+        return index;
+    }
+ 
+ TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
+        if(nums.empty()) return NULL;
+        int i = findMax(nums);
+        TreeNode * node = new TreeNode(nums[i]);
+        vector<int>left(nums.begin(),nums.begin()+i);
+        vector<int>right(nums.begin()+i+1,nums.end());
+        node->left = constructMaximumBinaryTree(left);
+        node->right = constructMaximumBinaryTree(right);
+        return node;
+    }
+    
+    Comment:
+    1. FindMax spends too much time.
+    2. Recursion: function overhead.
