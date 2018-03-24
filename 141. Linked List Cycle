@@ -1,0 +1,11 @@
+ bool hasCycle(ListNode *head) {
+        set<ListNode*>visited;
+        ListNode* p = head;
+        while(p!=NULL){
+            visited.insert(p);
+            p = p->next;
+            if(visited.count(p)==1)
+                return true;
+        }
+        return false;
+    }
