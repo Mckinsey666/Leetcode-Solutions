@@ -1,0 +1,4 @@
+int distributeCandies(vector<int>& candies) {
+        set<int>kinds(candies.begin(),candies.end());
+        return kinds.size()>candies.size()/2?candies.size()/2:kinds.size();
+    }
