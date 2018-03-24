@@ -14,3 +14,6 @@ bool checkPossibility(vector<int>& nums) {
         }
         return true;
     }
+
+Comment:
+Find a pair which is decreasing: check if the array will be non-decreasing after we manually make the pair "non-decreasing".
