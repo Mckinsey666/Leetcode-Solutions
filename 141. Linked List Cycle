@@ -1,4 +1,5 @@
- bool hasCycle(ListNode *head) {
+method 1:
+bool hasCycle(ListNode *head) {
         set<ListNode*>visited;
         ListNode* p = head;
         while(p!=NULL){
@@ -6,6 +7,20 @@
             p = p->next;
             if(visited.count(p)==1)
                 return true;
+        }
+        return false;
+    }
+    
+ method 2:
+
+bool hasCycle(ListNode *head) {
+        ListNode* p = head;
+        while(p){
+            if(p->next==head)
+                return true;
+            ListNode* temp = p->next;
+            p->next = head;
+            p = temp;
         }
         return false;
     }
