@@ -1,0 +1,26 @@
+    vector<double>levelSum;
+    vector<int>n;
+    int height(TreeNode* root){
+        if(!root) return 0;
+        return 1 + max(height(root->left),height(root->right));
+    }
+    void visit(TreeNode* root, int level){
+        if(!root) return;
+        levelSum[level]+=root->val;
+        n[level]++;
+        visit(root->left,level+1);
+        visit(root->right,level+1);
+    }
+    vector<double> averageOfLevels(TreeNode* root) {
+        int h = height(root);
+        levelSum.resize(h);
+        n.resize(h);
+        visit(root,0);
+        vector<double>average;
+        for(int i=0;i<h;++i)
+            average.push_back(levelSum[i]/n[i]);
+        return average;
+    }
+    
+    Comment:
+    1. Not concise enough...
