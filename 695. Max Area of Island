@@ -1,0 +1,26 @@
+vector<vector<int> >map;
+  int h;
+  int w;
+  int dfs(int i, int j) {
+	  map[i][j] = 0;
+	  int area = 1;
+	  if (j>0 && map[i][j - 1]) area += dfs(i, j - 1);
+	  if (j<w - 1 && map[i][j + 1]) area += dfs(i, j + 1);
+	  if (i>0&& map[i - 1][j]) area += dfs(i - 1, j);
+	  if (i<h - 1&& map[i + 1][j]) area += dfs(i + 1, j);
+	  return area;
+}
+int maxAreaOfIsland(vector<vector<int>>& grid) {
+	h = grid.size();
+	w = grid[0].size();
+	map = grid;
+	priority_queue<int, vector<int>, less<int> >area;
+	for (int i = 0; i < h; ++i)
+		for (int j = 0; j < w; ++j)
+			if (map[i][j])
+				area.push(dfs(i, j));
+	return area.empty() ? 0 : area.top();
+}
+
+Comment:
+1. Simple DFS solution
