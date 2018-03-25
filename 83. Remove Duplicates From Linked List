@@ -1,0 +1,17 @@
+ListNode* deleteDuplicates(ListNode* head) {
+        if(!head) return NULL;
+        ListNode* curr = head;
+        while(curr){
+            while(curr->next&&curr->val==curr->next->val){
+                ListNode* old = curr->next;
+                curr->next=curr->next->next;
+                old->next = NULL;
+                delete old;
+            }
+            curr=curr->next;
+        }
+        return head;
+    }
+    
+Comments:
+1. Be careful of memory leaks
