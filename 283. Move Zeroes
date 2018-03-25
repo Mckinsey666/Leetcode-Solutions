@@ -1,0 +1,12 @@
+    void moveZeroes(vector<int>& nums) {
+        for(int i=nums.size()-2;i>=0;--i)
+            if(!nums[i]){
+                int j=i;
+                while(nums[j+1]){
+                    swap(nums[j],nums[j+1]);
+                    j++;
+                    if(j==nums.size()-1) break;
+                }
+            }
+        return;
+    }
