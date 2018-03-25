@@ -1,0 +1,14 @@
+int getSum(map<int,Employee*> pool, int id){
+        int sum = pool[id]->importance;
+        for(auto e:pool[id]->subordinates)
+            sum += getSum(pool,pool[e]->id);
+        return sum;
+    }
+    int getImportance(vector<Employee*> employees, int id) {
+        map<int, Employee*>pool;
+        for(auto e:employees)
+            pool[e->id] = e;
+        return getSum(pool, id);
+    }
+Comment:
+1. Directed Graph DFS, no need to mark as visited (will not visit again anyway)
