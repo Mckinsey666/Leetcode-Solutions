@@ -1,0 +1,11 @@
+    int height(TreeNode* root){
+        if(!root) return -1;
+        return 1 + max(height(root->left),height(root->right));
+    }
+    
+    int diameterOfBinaryTree(TreeNode* root) {
+        if(!root) return 0;
+        int childDiameter = max(diameterOfBinaryTree(root->right),diameterOfBinaryTree(root->left));
+        int parentDiameter = 2 + height(root->left)+height(root->right);
+        return max(parentDiameter, childDiameter);
+    }
