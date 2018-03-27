@@ -1,0 +1,13 @@
+    vector<int> numberOfLines(vector<int>& widths, string S) {
+        vector<int> ret(2,0);
+        if(S.empty()) return ret;
+        ret[0] = 1;
+        for(char c:S){
+            if(widths[c-'a']>100-ret[1]){
+                ret[1] = widths[c-'a'];
+                ret[0]++;
+            }
+            else ret[1] += widths[c-'a'];
+        }
+        return ret;
+    }
