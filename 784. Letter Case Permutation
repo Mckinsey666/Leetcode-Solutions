@@ -1,0 +1,22 @@
+    vector<string>words;
+    vector<int>alphaIndex;
+    void backtrack(string s, int currIndex){
+        if(currIndex==alphaIndex.size()){
+            words.push_back(s);
+            return;
+        }
+        backtrack(s,currIndex+1);
+        s[alphaIndex[currIndex]] = toupper(s[alphaIndex[currIndex]]);
+        backtrack(s,currIndex+1);
+    }
+    
+    vector<string> letterCasePermutation(string S) {
+        for(int i=0;i<S.size();++i)
+            if(isalpha(S[i])){
+                alphaIndex.push_back(i);
+                S[i] = tolower(S[i]);
+            }
+        if(alphaIndex.empty()) return {S};
+        backtrack(S,0);
+        return words;
+    }
