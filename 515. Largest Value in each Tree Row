@@ -1,0 +1,25 @@
+    vector<int> largestValues(TreeNode* root) {
+        if(!root) return{};
+        vector<int>rowMax;
+        queue<TreeNode*>bfs;
+        bfs.push(root);
+        rowMax.push_back(root->val);
+        while(!bfs.empty()){
+            int sz = bfs.size();
+            int maxVal = INT_MIN;
+            for(int i = 0;i<sz;++i){
+                TreeNode* t = bfs.front();bfs.pop();
+                if(t->left){
+                    bfs.push(t->left);
+                    maxVal = max(t->left->val, maxVal);
+                }
+                if(t->right){
+                    bfs.push(t->right);
+                    maxVal = max(t->right->val,maxVal);
+                }
+            }
+            if(!bfs.empty())
+                rowMax.push_back(maxVal);
+        }
+        return rowMax;
+    }
